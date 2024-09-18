@@ -1,13 +1,13 @@
-﻿using VShopWEB.Models;
+﻿using WEB.Models;
 
-namespace VShopWEB.Services.Contracts
+namespace WEB.Services.Contracts
 {
     public interface IProductService
     {
-        Task<IEnumerable<ProductsViewModel>> GetAllAsync();
-        Task<ProductsViewModel> GetByIdAsync(int id);
-        Task<ProductsViewModel> CreateProduct(ProductsViewModel productVm);
-        Task<ProductsViewModel> UpdateProductAsync(ProductsViewModel productVm);
-        Task<bool> DeleteProductById(int id);
+        Task<IEnumerable<ProductsViewModel>> GetAllAsync(string token);
+        Task<ProductsViewModel> GetByIdAsync(int id, string token);
+        Task<ProductsViewModel> CreateProduct(ProductsViewModel productVm, string token);
+        Task<ProductsViewModel> UpdateProductAsync(ProductsViewModel productVm, string token);
+        Task<bool> DeleteProductById(int id, string token);
     }
 }

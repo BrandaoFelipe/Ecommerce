@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProductsAPI.DTOs;
+using ProductsAPI.Roles;
 using ProductsAPI.Services;
 
 namespace ProductsAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _repository;
@@ -66,6 +69,7 @@ namespace ProductsAPI.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = Role.Admin)]
         public async Task<ActionResult<CategoryDTO>> Delete(int id)
         {
             var product = await _repository.GetCategoryById(id);

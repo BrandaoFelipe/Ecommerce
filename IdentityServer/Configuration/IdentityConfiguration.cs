@@ -21,7 +21,7 @@ public class IdentityConfiguration
         {
             //vshop is the application that will access
             //the IdentityServer to get the token
-            new ApiScope("vshop", "VShop Server"),
+            new ApiScope("ecommerce", "Ecommerce Server"),
             new ApiScope(name: "read", "Read data."),
             new ApiScope(name: "write", "Write data."),
             new ApiScope(name: "delete", "Delete data."),
@@ -40,17 +40,17 @@ public class IdentityConfiguration
                 },
                 new Client
                 {
-                    ClientId = "vshop",
+                    ClientId = "ecommerce",
                     ClientSecrets = { new Secret("abracadabra#simsalabim".Sha256())},
                     AllowedGrantTypes = GrantTypes.Code, //via codigo
-                    RedirectUris = {"http://localhost:5126/signin-oidc"},//login
-                    PostLogoutRedirectUris = {"http://localhost:5126/signout-callback-oidc"},//logout
+                    RedirectUris = {"https://localhost:7001/signin-oidc"},//login
+                    PostLogoutRedirectUris = {"https://localhost:7001/signout-callback-oidc"},//logout
                     AllowedScopes = new List<string>
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.Email,
-                        "vshop"
+                        "ecommerce"
                     }
                 }
         };

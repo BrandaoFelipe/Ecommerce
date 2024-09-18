@@ -1,4 +1,4 @@
-namespace VShopWEB.Models
+namespace WEB.Models
 {
     public class ErrorViewModel
     {

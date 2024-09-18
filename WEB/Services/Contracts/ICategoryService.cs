@@ -1,13 +1,13 @@
-﻿using VShopWEB.Models;
+﻿using WEB.Models;
 
-namespace VShopWEB.Services.Contracts
+namespace WEB.Services.Contracts
 {
     public interface ICategoryService
     {
-        Task<IEnumerable<CategoryViewModel>> GetAllAsync();
-        Task<CategoryViewModel> GetByIdAsync(int id);
-        Task<CategoryViewModel> CreateCategory(CategoryViewModel categoryVM);
-        Task<CategoryViewModel> UpdateCategoryAsync(CategoryViewModel categoryVM);
-        Task<bool> DeleteCategoryById(int id);
+        Task<IEnumerable<CategoryViewModel>> GetAllAsync(string token);
+        Task<CategoryViewModel> GetByIdAsync(int id, string token);
+        Task<CategoryViewModel> CreateCategory(CategoryViewModel categoryVM, string token);
+        Task<CategoryViewModel> UpdateCategoryAsync(CategoryViewModel categoryVM, string token);
+        Task<bool> DeleteCategoryById(int id, string token);
     }
 }
