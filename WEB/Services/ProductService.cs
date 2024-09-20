@@ -71,7 +71,7 @@ public class ProductService : IProductService
         StringContent content = new StringContent(JsonSerializer.Serialize(productVm), 
             Encoding.UTF8, "application/json");
         
-        using var response = await client.GetAsync(apiEndpoint + content);
+        using var response = await client.PostAsync(apiEndpoint, content);
 
         if (response.IsSuccessStatusCode)
         {

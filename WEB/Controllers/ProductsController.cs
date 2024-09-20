@@ -8,7 +8,7 @@ using WEB.Roles;
 
 namespace WEB.Controllers;
 
-[Authorize]
+[Authorize(Roles = Role.Admin)]
 public class ProductsController : Controller
 {
     private readonly IProductService _productService;
@@ -22,8 +22,6 @@ public class ProductsController : Controller
     [HttpGet]
     public async Task<ActionResult<IEnumerable<ProductsViewModel>>> Index()
     {
-        
-
         var products = await _productService.GetAllAsync(await GetAccessToken());
         if (products == null)
         {
@@ -31,9 +29,7 @@ public class ProductsController : Controller
         }
 
         return View(products);
-    }
-
-    
+    }    
 
     [HttpGet]
     public async Task<ActionResult> Create()
@@ -80,7 +76,7 @@ public class ProductsController : Controller
 
         return View(product);
     }
-    [Authorize(Roles = Role.Admin)]
+    
     [HttpPost]
     public async Task<ActionResult> Update(ProductsViewModel productsViewModel)
     {
@@ -108,7 +104,7 @@ public class ProductsController : Controller
         return View(product);
     }
 
-    [Authorize(Roles = Role.Admin)]
+    
     [HttpPost(), ActionName("Delete")]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {

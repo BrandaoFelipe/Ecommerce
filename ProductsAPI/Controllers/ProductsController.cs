@@ -8,7 +8,6 @@ namespace ProductsAPI.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize]
 public class ProductsController : ControllerBase
 {
     private readonly IProductService _repository;
@@ -71,6 +70,7 @@ public class ProductsController : ControllerBase
     }
 
     [HttpPut]
+    [Authorize(Roles = Role.Admin)]
     public async Task<ActionResult<ProductDTO>> Update([FromBody] ProductDTO productDTO)
     {
         if (productDTO == null)
