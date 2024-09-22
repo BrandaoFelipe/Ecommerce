@@ -58,6 +58,14 @@ internal class Program
                         .UseMySql(mySqlConnection, ServerVersion
                         .AutoDetect(mySqlConnection)));
 
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("CorsPolicy",
+                builder => builder.AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod());
+        });
+
         builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
@@ -97,6 +105,7 @@ internal class Program
         }
 
         app.UseHttpsRedirection();
+        app.UseCors("CorsPolicy");
         app.UseRouting();
         app.UseAuthentication();
         app.UseAuthorization();
